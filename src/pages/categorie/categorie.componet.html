@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categorie</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="NewCategory()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Ajouter une categorie-->
+  <ion-list *ngIf = "newcategory">
+    <ion-item >
+      <ion-label color="primary" floating>Category</ion-label>
+      <ion-input type="text" required="true" [(ngModel)]="newcategory.libelle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button (click) = "canceledit()">Annuler</button>
+      <button ion-button color="secondary" (click) = "ajouterCategorie(newcategory)" [disabled]="!newcategory.libelle">Sauver</button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Modifier une categorie-->
+  <ion-list *ngIf = "selectedCategory">
+    <ion-item >
+      <ion-label color="primary" floating>Category</ion-label>
+      <ion-input type="text" required="true" [(ngModel)]="selectedCategory.libelle"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button (click) = "canceledit()">Annuler</button>
+      <button ion-button color="secondary" (click) = "modifierCategorie(selectedCategory)">Sauver</button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Liste de categorie-->
+  <ion-list >
+    <ion-item *ngFor="let categ of categories">
+      <ion-icon name="code" item-left></ion-icon>
+      <b>{{categ.libelle}}</b>
+      <ion-icon name="create" item-right color = "primary" (click) = "editcat(categ)"></ion-icon>
+      <ion-icon name="trash" item-right color = "danger" (click) = "supprimerCategorie(categ)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
