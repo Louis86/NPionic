@@ -58,8 +58,6 @@ export class CategorieService {
       );
   }
 
-
-
   private _urlSupprimerCategorie: string = "http://127.0.0.1:8000/api/supprimer/categorie";
   supprimerCategorie (cat: Categorie | number): Observable<Categorie> {
     const id = typeof cat === 'number' ? cat : cat.id;
